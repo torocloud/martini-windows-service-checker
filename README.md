@@ -78,8 +78,10 @@ Now that we have confirmed that the script is running as expected we will want t
 
 
 ### Configuring Task Scheduler to run the PowerShell monitoring script:
-<br> 1.) Click “Create a task” and enter a name and description for the new task. In our example, we’ll assign a service account to run the task, and run it regardless of whether the user is logged on. </br>
-<br> 2.) Switch Trigger Tab and click the “New…” button. Here you can specify the conditions that trigger the task to be executed. For example, you can have it executed on schedule, at logon, on idle, at startup or whenever a particular event occurs. We want our task to run every 5 minutes to check whether our packages or api are running or not. So we choose "On a schedule" from the drop down and set it to daily. Under Advanced Settings, we set to Repeat the Task every 5 minutes for the duration of 1 day. </br>
+<br> 1.) Click “Create a task” and enter a name and description for the new task. In our example, we’ll assign a service account to run the task, and run it regardless of whether the user is logged on. ![image](https://user-images.githubusercontent.com/99488555/178425394-71392a47-a8ae-40d0-9ed2-4956a5f16097.png)
+</br>
+<br> 2.) Switch Trigger Tab and click the “New…” button. Here you can specify the conditions that trigger the task to be executed. For example, you can have it executed on schedule, at logon, on idle, at startup or whenever a particular event occurs. We want our task to run every 5 minutes to check whether our packages or api are running or not. So we choose "On a schedule" from the drop down and set it to daily. Under Advanced Settings, we set to Repeat the Task every 5 minutes for the duration of 1 day. ![image](https://user-images.githubusercontent.com/99488555/178425620-c371facf-b2b8-434a-8b69-66849b8ef7f0.png)
+</br>
 <br> 3.) Navigate to the “Actions” tab, and click “New…”. Here you can specify the actions that will be executed whenever the trigger conditions are met. In our case, we want to monitor our Martini service, so we will use the powershell script inside this repository.
 
 To schedule the PowerShell script, specify the following parameters:
@@ -88,16 +90,22 @@ Action: Start a program
 Program\script: powershell
 Add arguments (optional): -File [Specify the file path to the script here]
 Click “OK” to save your changes.
-</pre>
+</pre> 
+![image](https://user-images.githubusercontent.com/99488555/178425703-a17752d3-6c60-4289-ad12-a4e0a0504c2e.png)
+
 4.) The “Conditions” tab enables you to specify the conditions that, along with the trigger, determine whether the task should be run. In our case, we set it with the following settings:
 <pre>
 - [x] Start the task only if the computer is on AC power
 - [x] Stop if the computer switches to battery power
 </pre>
+![image](https://user-images.githubusercontent.com/99488555/178425871-7f8d6944-9613-48d5-86ae-fd984ae5fdf8.png)
+
 5.) You can also set up additional parameters for your scheduled task on the “Settings” tab. In our case, we set it with the following settings:
 <pre>
 - [x] Allow task to be run on demand
 - [x] If the running task does not end when requested, force it to stop
 
 The rest are unchecked.
-<pre>
+</pre>
+![image](https://user-images.githubusercontent.com/99488555/178425956-8817153b-2b7b-43dc-b174-dfc5dc78b132.png)
+
